@@ -1,0 +1,40 @@
+---
+layout:     post
+title:      "把数组排成最小的数"
+subtitle:   "剑指offer"
+date:       2015-03-04
+author:     "chl"
+header-img: "img/post-bg-js-module.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+---
+ ## 题目描述
+ 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
+ ## 解法
+ 若有两个数字(x,y)之间有xy<yx,则定义x小于y;反之则y小于x;
+所以对与x1x2x3 ... xn要为所有x1...xn之间排序之后的最小值，则必须满足x1<x2<x3...<xn;(数值的字符串大小比较也符合数值的大小比较）；
+ ## 代码
+ ```
+ int cmp(const void* _a, const void* _b) {
+	string c1 = *(string*)(_a)+*(string*)(_b);
+	string c2 = *(string*)(_b)+*(string*)(_a);
+	return c1.compare(c2);
+}
+
+string PrintMinNumber(vector<int> numbers) {
+	int length = numbers.size();
+	string* numstr = new string[length];
+	for (int i = 0; i < length; i++) {
+		numstr[i] = to_string(numbers[i]);
+	}
+	string ret;
+	qsort(numstr, length, sizeof(string), cmp);
+	for (int i = 0; i < length; i++) {
+		ret += numstr[i];
+	}
+	cout << ret << endl;
+	return ret;
+}
+ ```
