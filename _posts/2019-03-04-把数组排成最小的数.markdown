@@ -4,7 +4,7 @@ title:      "把数组排成最小的数"
 subtitle:   "剑指offer"
 date:       2015-03-04
 author:     "chl"
-header-img: "img/post-bg-js-module.jpg"
+header-img: "img/jzoffer.jpg"
 tags:
     - 剑指offer
     - 算法
