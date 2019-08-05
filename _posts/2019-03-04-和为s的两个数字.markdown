@@ -1,0 +1,48 @@
+---
+layout:     post
+title:      "丑数"
+subtitle:   "剑指offer"
+date:       2019-03-04
+author:     "chl"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
+
+## 解法
+由于是递增的，所以可以设立两个字指针，分别从头和尾部开始，依次相加比较是否等于S，若结果大于S，则high--,反之则low++;
+
+## 代码
+```
+    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+        vector<int> retdata;
+        if(array.size()==0) return retdata;
+        int low= 0;
+        int high = array.size()-1;
+        while(low<=high){
+            int s = array[low]+array[high];
+            if(s == sum) {
+                retdata.push_back(array[low]);
+                retdata.push_back(array[high]);  
+                break;
+            }
+            else if(s<sum) low++;
+            else high--;
+        }
+        return retdata;
+    }
+```
+
+## 总结
+由于每次我们都需要取两个数字，而且数组是递增的，所以我们可以从首尾开始找；
+
+> 这里有个证明，high-low最大的时候，他们的乘积最小；
+> 找到的第一组（相差最大的）就是乘积最小的。
+> 可以这样证明：考虑x+y=C（C是常数），x*y的大小。
+> 不妨设y>=x，y-x=d>=0，即y=x+d, 2x+d=C, x=(C-d)/2, x*y=x(x+d)=(C-d)(C+d)/4=(C^2-d^2)/4，
+> 也就是x*y是一个关于变量d的二次函数，对称轴是y轴，开口向下。d是>=0的，d越大, x*y也就越小。
