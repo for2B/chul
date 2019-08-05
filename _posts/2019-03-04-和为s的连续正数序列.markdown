@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "丑数"
+title:      "和为s的连续正数序列"
 subtitle:   "剑指offer"
 date:       2019-03-04
 author:     "chl"
