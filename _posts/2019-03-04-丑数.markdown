@@ -1,0 +1,60 @@
+---
+layout:     post
+title:      "丑数"
+subtitle:   "剑指offer"
+date:       2019-03-04
+author:     "chl"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+---
+## 题目
+把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。
+## 解法
+判断一个数是否是丑数，只需依次判断该数连续被2除，被3除，被5除是否满足最后等于1；
+本题的最直接的方式就是 写一个上述判断方法，然后从不断判断每一个数字是不是丑数，然后达到指定数目后返回；但是这样效率低；
+效率更高的方法（但是需要牺牲空间）：首先明确，丑数都可以由前面的丑数乘2,3,5来获得，而且题目要求排序，所以对每一个丑数乘以2,3,5 直到刚好大于当前最大值M为止，然后对得到得到M2,M3,M5取最小值，就是M的下一个丑数； 
+然后对于前面的所有丑数中，相对于2,3,5 总存在一个数T2,T3,T5 使得T2*2,T3*3,T5*5刚好大于当前最大值M，所以并不需要所有丑数进行运算，只需要每次丑数之后，更新该值；
+## 代码
+```
+    int GetUglyNumber_Solution(int index) {
+        if (index <= 0 ) return 0;
+        
+        int *uglilyNums = new int[index];
+        int number = 1;
+        uglilyNums[0] = 1;
+        int nextIndex = 1;
+        int *T2 = uglilyNums;
+        int *T3 = uglilyNums;
+        int *T5 = uglilyNums;
+        while(nextIndex < index){
+            int min = Min(*T2*2,*T3*3,*T5*5);
+            uglilyNums[nextIndex] = min;
+            while(*T2*2<=uglilyNums[nextIndex]){
+                T2++;
+            }
+            while(*T3*3<=uglilyNums[nextIndex]){
+                T3++;
+            }
+            while(*T5*5<=uglilyNums[nextIndex]){
+                T5++;
+            }
+            nextIndex++;
+        }
+        int uglilynum = uglilyNums[nextIndex-1];
+        delete []uglilyNums;
+        return uglilynum;
+    }
+    
+    int Min(int number1,int number2,int number3){
+        int min = (number1>number2)?number2:number1;
+        min = (number3>min)?min:number3;
+        return min;
+    }
+```
+
+## 总结
+后面的结果由前面的结果来获得，并且有排序关系，所以可以设置临界值来减少不必要的运算；
+这是利用空间来存储前面已经出现的丑数，从而换取时间效率；
