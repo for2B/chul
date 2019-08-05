@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      "圆圈中最后剩下的数字"
+subtitle:   "剑指offer"
+date:       2019-03-03
+author:     "chl"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
 ## 题目描述
 每年六一儿童节,牛客都会准备一些小礼物去看望孤儿院的小朋友,今年亦是如此。
 HF作为牛客的资深元老,自然也准备了一些小游戏。其中,有个游戏是这样的:
