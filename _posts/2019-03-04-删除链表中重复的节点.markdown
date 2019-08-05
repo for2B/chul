@@ -1,0 +1,65 @@
+---
+layout:     post
+title:      "删除链表中重复的节点"
+subtitle:   "剑指offer"
+date:       2019-03-04
+author:     "chl"
+header-img: "img/post-bg-js-version.jpg"
+tags:
+    - 算法
+    - 数据结构
+    - 剑指offer
+---
+
+
+## 题目描述
+在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
+分析：检测当前节点和后续的几点是否相同（排好序的），相同则删除后面的节点和当前的节点；
+可以利用前驱节点或者不用前驱节点，区别是删除节点的时候会方便一些；
+
+```
+/*
+不使用递归和前一个节点的方法
+*/
+ListNode* deleteDuplication(ListNode* pHead)
+    {
+        ListNode *pNode = pHead; //指向当前节点
+        bool deletePNode = false; //判断当前节点是否需要删除；
+
+        while(pNode!=nullptr && pNode->next != nullptr){ 
+            while(pNode->next!=NULL && pNode->val == pNode->next->val){ //判断当前节点与下一个节点是否相同，while是为了将后续多个重复的都删除；
+                ListNode *pTemp = pNode->next;
+                pNode->next = pTemp->next;
+                delete pTemp;
+                pTemp = nullptr;
+                deletePNode = true; //需要将当前pNode删除
+             }
+            if(deletePNode){
+                ListNode *pDelete = pNode;
+				if (pDelete == pHead) { //要删除的节点位于队头，调整队头位置；
+					pHead = pDelete->next;
+					pNode = pDelete->next;
+				}
+				else if (pDelete->next == NULL) { //要删除的节点在队尾，需要找到前一个节点；
+					ListNode *temp = pHead;
+					while (temp->next != pDelete) temp = temp->next;
+					temp->next = NULL;
+					pNode = NULL;
+				}
+				else {
+					pDelete->val = pDelete->next->val; //删除中间节点，将后一个节点覆盖当前节点
+					pDelete = pDelete->next;
+					pNode->next = pDelete->next;
+				}
+				delete pDelete;
+				pDelete = NULL;
+				deletePNode = false;
+	
+            }else{
+                pNode = pNode->next;
+            }
+        }
+        return pHead;
+    }
+```
+使用前驱节点：找到有重复的，从当前节点开始往后删除重复的节点，删除完之后将前驱节点指向下一个节点；前驱节点为空则表示删除的是队头，直接将头节点等于当前节点即可；
