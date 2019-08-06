@@ -6,7 +6,7 @@ email: ish2bchuil@gmail.com
 description: "为了寻找2B"
 keyword: ""
 #url: "http://huangxuan.me"              # your host, for absolute URL
-baseurl: "for2B/chuil"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
