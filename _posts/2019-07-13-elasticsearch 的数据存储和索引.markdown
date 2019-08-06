@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "elasticsearch 的数据存储和索引"
-subtitle:   " \"Hello World, Hello Blog\""
+subtitle:   "es学习记录"
 date:       2019-07-13
 author:     "CHuiL"
 header-img: "img/post-bg-2015.jpg"
