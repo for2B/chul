@@ -1,0 +1,65 @@
+---
+layout:     post
+title:      "数值的整数次方"
+subtitle:   "剑指offer"
+date:       2019-02-18
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
+
+## 解法
+题目本身不难；但是需要考虑边界值如底数为0的情况，以及指数为负数；  底数为0其实是一种错误，需要返回错误；  
+指数为负数先进行指数为正的运行，然后将结果取倒数，所以如果底数为0，指数又为负数则是一种错误；
+求a^n的公示可以为
+`{
+a^(n/2)*a^(n/2)                n为偶数；
+a^((n-1)/2)*a^((n-1)/2)*a  n为奇数；
+}`
+
+使用递归，相比直接使用指数的大小进行循环，可以减小循环的次数；
+判断一个数是奇数还是偶数，可以直接和1与，结果为1即为奇数，0为偶数；相比%效率更高；
+除以2（取整）可以使用右移，效率同样更高；
+
+## 代码
+```
+class Solution {
+public:    
+    double Power(double base, int exponent) {
+        if(base == 0.0 && exponent < 0){
+            return 0;
+        } 
+        int unexp;
+        if(exponent<0){
+            unexp = exponent * -1;
+        }else{
+            unexp = exponent;
+        }
+        double result = PowerWithUnexp(base,unexp);
+        if(exponent < 0 ){
+            result = 1.0/result;
+        }
+        return result;
+    }
+    double PowerWithUnexp(double base,int exponent){
+        if(exponent == 0){
+            return 1;
+        }
+        if(exponent == 1){
+            return base;
+        }
+        double result = PowerWithUnexp(base,exponent >> 1);
+        result = result * result;
+        if(exponent & 1 == 1){
+            result = result * base;
+        }
+        return result;
+    }
+};
+```

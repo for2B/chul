@@ -1,0 +1,46 @@
+---
+layout:     post
+title:      "滑动窗口的最大值"
+subtitle:   "剑指offer"
+date:       2019-02-17
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个： {[2,3,4],2,6,2,5,1}， {2,[3,4,2],6,2,5,1}， {2,3,[4,2,6],2,5,1}， {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}。
+
+## 解法
+我们肯定需要一个结构来存储每个窗口的最大值，然后对于新进数值，我们都需要进行判断，判断其要不要留在该结构中。我们使用一个队列，对每一个新进的数值，从队尾开始判断，将新值放置到第一个大于等于他的值后面，并将其后面的值全部弹出（若该新值为最大值，则弹出所有，该值为队头），这样每次取出的队头便是每个窗口的最大值
+
+## 代码
+```
+    vector<int> maxInWindows(const vector<int>& num, unsigned int size)
+    {
+        vector<int> retdata;
+        if (num.size()<size || size <1) return retdata;
+        deque<int> maxq;
+        for (int i = 0; i < size; i++) {
+            while (!maxq.empty() && num[i] >= num[maxq.back()])
+                maxq.pop_back();
+            maxq.push_back(i);
+        }
+
+        for (int i = size; i<num.size(); i++) {
+            retdata.push_back(num[maxq.front()]);
+
+            while (!maxq.empty() && num[i]>=num[maxq.back()])
+                maxq.pop_back();
+            maxq.push_back(i);
+
+            if (!maxq.empty() && (i - maxq.front()) >= size)
+                maxq.pop_front();
+        }
+        retdata.push_back(num[maxq.front()]);
+        return retdata;
+    }
+```

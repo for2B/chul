@@ -1,0 +1,63 @@
+---
+layout:     post
+title:      "两个链表的第一个公共结点"
+subtitle:   "剑指offer"
+date:       2019-02-17
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+输入两个链表，找出它们的第一个公共结点。
+
+## 解法
+这道题单纯这么描述感觉有歧义。因为可能存在以下两种情况
+第一种，如下，从公共节点开始后面的节点都相同，可以先求两链表长度，例如分别为5,6；然后使两链表到达尾部的时间相同，即长的先走m-n（n-m)步，然后每走一步比较一次，找到的就是第一个公共节点。空间复杂度O(1),时间复杂度O(m+n);
+```
+graph LR
+A-->B
+B-->C
+C-->D
+D-->E
+F-->Y
+Y-->B
+```
+下面这种情况显然上面的方法就行不通了，可以使用哈希表分别存储两个链表的节点，然后依次比较当前节点是否在另外一个链表中出现，直到某一方出现了，返回该节点；空间复杂度O(m+n),时间复杂度O(n)；
+```
+graph LR
+A-->B
+B-->C
+C-->D
+D-->E
+F-->Y
+Y-->B
+B-->G
+G-->H
+```
+
+## 代码
+```
+     ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
+        if(pHead1 == NULL || pHead2 == NULL ) return NULL;
+        map<ListNode* ,int> m1;
+        map<ListNode* ,int> m2;
+        while(pHead1!=NULL || pHead2!=NULL){
+            if(pHead1!=NULL){
+                if(m2.count(pHead1) == 1) return pHead1;
+                m1[pHead1] = 1;
+                pHead1 = pHead1->next;
+            }
+            
+            if(pHead2!=NULL){
+                if(m1.count(pHead2) == 1) return pHead2;
+                m2[pHead2] = 1;
+                pHead2 = pHead2->next;
+            }
+        }
+        return NULL;
+    }
+```

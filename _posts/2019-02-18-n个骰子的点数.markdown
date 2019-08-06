@@ -1,0 +1,77 @@
+---
+layout:     post
+title:      "n个骰子的点数"
+subtitle:   "剑指offer"
+date:       2019-02-18
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+把n个骰子投出去，所有点数和记为s，输入n，求所有可能的s出现的概率；
+
+## 解法
+s的所有可能为 n~6*n;所以按照排列的思路，分为第一个和后面的n-1个，然后依次求出每种可能的和，并用一个6n-n+1大的数组存储每一个值出现的次数；最后每个值出现的次数除以总个数；递归容易写，但效率低；    
+
+假设现在是循环计算到了第n个骰子，那么第n的骰子的可能出现的和为n~6*n；
+设f(k)表示和为k出现的次数，则对于第n个骰子来说，k出现的次数为前面出现k-1,k-2..,k-6出现的次数的总和。
+所以有f(k)=f(k-1)+f(k-2)+f(k-3)+f(k-4)+f(k-5)+f(k-6)   n<=k<=n*6;
+如现在有两个骰子，k的范围为2~12，则k=4出现的次数为上一个骰子321出现的次数
+基于这种思路就可以利用两个数组，交替当作当前使用数组和上一个数组；
+
+
+## 代码
+```
+void PrintProbability_Solution2(int number) 
+ { 
+ if(number < 1) 
+ return; 
+   int* pProbabilities[2]; 
+ pProbabilities[0] = new int[g_maxValue * number + 1]; 
+ pProbabilities[1] = new int[g_maxValue * number + 1];
+ //初始值赋值为0； 
+ for(int i = 0; i < g_maxValue * number + 1; ++i) 
+ { 
+ pProbabilities[0][i] = 0; 
+ pProbabilities[1][i] = 0; 
+ } 
+ int flag = 0; 
+ //第一个骰子，1~6为1；
+ for (int i = 1; i <= g_maxValue; ++i)  
+ pProbabilities[flag][i] = 1;  
+ 
+ //依次求出2~number骰子的和可能出现的次数
+for (int k = 2; k <= number; ++k)  
+ {
+      //将k前面的和赋为0，因为此时最小为k；
+     for(int i = 0; i < k; ++i) 
+     pProbabilities[1 - flag][i] = 0; 
+ 
+     //求k到k*6出现的次数；
+   for (int i = k; i <= g_maxValue * k; ++i)  
+   { 
+     pProbabilities[1 - flag][i] = 0; 
+     // f(k) = f‘(k-1)+f‘(k-2)+f’(k-3)+f‘(k-4)+f’(k-5)+f‘(k-6);
+     for(int j = 1; j <= i && j <= g_maxValue; ++j)  
+     pProbabilities[1 - flag][i] += pProbabilities[flag][i - j]; 
+    } 
+   flag = 1 - flag; 
+ } 
+double total = pow((double)g_maxValue, number); 
+//统计概率；
+ for(int i = number; i <= g_maxValue * number; ++i) 
+ { 
+ double ratio = (double)pProbabilities[flag][i] / total; 
+ printf("%d: %e\n", i, ratio); 
+ } 
+   delete[] pProbabilities[0]; 
+ delete[] pProbabilities[1]; 
+ } 
+```
+
+## 总结
+本题最主要的思路是能够意识到后面的结果可以由前面的结果进行统计。最后得出f(k)=f(k-1)+f(k-2)+f(k-3)+f(k-4)+f(k-5)+f(k-6)这个函数。

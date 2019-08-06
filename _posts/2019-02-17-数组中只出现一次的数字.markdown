@@ -1,0 +1,66 @@
+---
+layout:     post
+title:      "数组中只出现一次的数字"
+subtitle:   "剑指offer"
+date:       2019-02-17
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+一个整型数组里除了两个数字之外，其他的数字都出现了偶数次。请写程序找出这两个只出现一次的数字。
+
+## 解法
+这道题可以使用异或运算来求解。同个数字偶数次相异或的结果为0，所以我们可以将所有的数字依次异或，那么最终的结果就相当于那两个不同的数字异或的结果。
+因为两个数字不同，所以异或的结果肯定不为0，因为10异或为1，所以可以找出第一个1出现的位置，然后在根据这个位置是1还是0，将所有数字区分开来进行异或，这样偶数次出现的最后异或为0，剩下的就分别是那两个出现一次的数字了
+
+
+
+## 代码
+```
+     void FindNumsAppearOnce(vector<int> data,int* num1,int *num2) {
+        if(data.size()<=2) return;
+        int xorsum = 0;
+        for(int i = 0 ; i<data.size();i++){
+            xorsum ^= data[i]; //求异或总和；
+        }
+        
+        unsigned int indexOf1 = FindFirstBitIs1(xorsum); //求和中第一个1的位置；
+        *num1 = *num2 = 0;
+        
+        for(int i = 0 ; i < data.size();i++){
+            if(isBit1(data[i],indexOf1)){ //根基indexOf位置分为两部分；
+                *num1 ^= data[i];
+            }else{
+                *num2 ^= data[i];
+            }
+        }
+        return;
+    }
+    
+    unsigned int FindFirstBitIs1(int num){
+        int indexBit = 0;
+        while(((num&1)==0) && (indexBit<8*sizeof(int))){
+            num = num>>1;
+            ++indexBit;
+        }
+        return indexBit;
+    }
+    
+    bool isBit1(int num,unsigned int indexBit){
+        num = num >> indexBit;
+        return (num & 1);
+    }
+```
+
+## 总结
+重点在于能想到可以用关系运算的特性来求解；在这里偶数次异或结果会抵消，可以根据这一特性来存储信息；
+对于这道题，很明显是要遍历所有，但是空间复杂度限制为O(1),也就是不能开辟O(n)的空间来数据，所以只能通过在遍历的过程存储对后面有用的信息，这里就用到了异或运算；
+### 扩展
+## 题目描述
+在一个数组中有一个数字只出现一次，其他的均出现了三次，找出这个出现一次的数字，时间复杂度O(N),空间复杂度为O(1);
+解法：同样需要用到位运算。因为出现了三次，所以上面的异或方法就不管用了；但是有更通用的方法，就是将每个数字的二进制对应位置的数（1/0）加起来，所以对于二进制中的某一位来说，如果能够被3整除，说明只出现一次的数字在该位为0，否则为1；

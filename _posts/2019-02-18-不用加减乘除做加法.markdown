@@ -1,0 +1,33 @@
+---
+layout:     post
+title:      "不用加减乘除做加法"
+subtitle:   "剑指offer"
+date:       2019-02-18
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。
+
+## 解法
+先不考虑进位，直接每一位相加 0+1 = 1， 1 + 1 = 0 ，0+ 0 =0；是异或 操作；求出来后在考虑进位，只有1+1的时候才会有进位，使用与运算求得，而且是先前进1，所以求出来后左移一位，与刚才求得的结果相加，即得结果；
+
+## 代码
+```
+    int Add(int num1, int num2)
+    {
+        int sum,carry;
+        do{
+            sum = num1^num2;
+            carry = (num1&num2)<<1;
+            num1 = sum;
+            num2 = carry;
+        }while(num2!=0);
+        return num1;
+    }
+```

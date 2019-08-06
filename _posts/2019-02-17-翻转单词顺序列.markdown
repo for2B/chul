@@ -1,0 +1,59 @@
+---
+layout:     post
+title:      "翻转单词顺序列"
+subtitle:   "剑指offer"
+date:       2019-02-17
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+牛客最近来了一个新员工Fish，每天早晨总是会拿着一本英文杂志，写些句子在本子上。同事Cat对Fish写的内容颇感兴趣，有一天他向Fish借来翻看，但却读不懂它的意思。例如，“student. a am I”。后来才意识到，这家伙原来把句子单词的顺序翻转了，正确的句子应该是“I am a student.”。Cat对一一的翻转这些单词顺序可不在行，你能帮助他么？
+
+## 解法
+两步翻转，先翻转整个序列，然后在对单个单词进行翻转；
+
+## 代码
+```
+     string ReverseSentence(string str) {
+        if (str == "" || str.length() == 1) return str;
+        int length = str.length()-1;
+        reverseStr(&str, 0, length);
+        char blank = ' ';
+        int b=-1;
+        for (int i = 0; i <= length; i++) {
+            if (b == -1 && str[i] != blank) {
+                b = i;
+                continue;
+            }
+            if (b != -1 && (str[i] == blank|| i == length)) {
+                if (str[i] == blank) {
+                    reverseStr(&str, b, i - 1);
+                    b = -1;
+                    continue;
+                }
+                if (i == length) {
+                    reverseStr(&str, b, i);
+                    b = -1;
+                    break;
+                }
+            }
+        }
+        return str;
+    }
+    void reverseStr(string* str, int low, int high) {
+        if (low == high) return;
+        if (str == nullptr) return;
+        while (low < high) {
+            char temp = (*str)[high];
+            (*str)[high] = (*str)[low];
+            (*str)[low] = temp;
+            low++;
+            high--;
+        }
+    }
+```

@@ -1,0 +1,45 @@
+---
+layout:     post
+title:      "判断平衡二叉树"
+subtitle:   "剑指offer"
+date:       2019-02-17
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+输入一棵二叉树，判断该二叉树是否是平衡二叉树。
+
+## 解法
+平衡二叉树要求每一个节点的左右子树深度的差值<=1。所以采用后序遍历的方法，从下往上遍历判断每个子树都否都满足，并且返回每个子树的深度。
+
+## 代码
+```
+    bool IsBalanced_Solution(TreeNode* pRoot) {
+        int i;
+       return isBanlance(pRoot,&i);
+    }
+    bool isBanlance(TreeNode *root,int* depth){
+        if(root==nullptr) {
+            *depth = 0;
+            return true;
+        }
+        
+        int left;
+        if(!isBanlance(root->left,&left)) return false;
+        
+        int right;
+        if(!isBanlance(root->right,&right)) return false;
+        
+        int diff = left-right;
+        if(diff<=-2 || diff >=2) return false;
+        
+        *depth = 1+(left>right?left:right);
+        
+        return true;
+    }
+```
