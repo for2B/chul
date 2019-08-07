@@ -1,0 +1,73 @@
+﻿---
+layout:     post
+title:      "从1~n整数中1出现的次数"
+subtitle:   "剑指offer"
+date:       2019-02-15
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数；1~13中包含1的数字有1、10、11、12、13因此共出现6次。求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。
+
+
+## 解法
+解法一：首先想到的是遍历1~n，然后对n除以10，求模，对1进行累加；这样的话每个数字n的求1复杂度为O(logN)；整个时间复杂度为O(n*logn);
+
+解法二：利用1出现的规律和递归的方法；假如随机给出一个数字4311，先看312~4311这个区间1的个数。首先计算首位为1时的次数，即1000~1999，此时可以
+先得到首位1出现的此时为10^3；接着求首位后面的位数1出现的次数，固定首位，后面的每一位都可能使0~9之间的10个数字，所以选其中某一位为1，另外两位则为有10^2可能，所以后面位数1出现的次数为3*10^2;此时在算上首位可能出现的数字，这里使1~4，所以一共就有10^3+4*3*10^2;
+之所以要分隔为312~4311，是因为0~312可以利用同样的方法递归获得；
+
+## 代码
+```
+ int NumberOf1Between1AndN_Solution(int n)
+    {
+        if(n<=0){
+            return 0;
+        }
+        char strN[50];
+        //利用字符串方便计算
+        sprintf(strN,"%d",n);
+        return NumberOf1(strN);
+    }
+    int NumberOf1(const char *strN){
+        if(!strN || *strN < '0' || *strN > '9' || *strN == '\0'){
+            return 0;
+        }
+        int first = *strN-'0';
+        unsigned int length = static_cast<unsigned int>(strlen(strN));
+        if(length == 1 && first==0){
+            return 0;
+        }
+        if(length == 1 && first > 0 ){
+            return 1;
+        }
+        //先求出首位为1时1出现在首位的次数；
+        int numFirstDigit = 0;
+        if(first>1){
+            numFirstDigit = PowerBase(length-1);
+        }
+        if(first == 1){
+            numFirstDigit = atoi(strN+1)+1;
+        }
+        //算出首位之后的1出现的次数
+        int numOtherDigits = first*(length-1)*PowerBase(length-2);
+        //递归求其余的1的次数
+        int numRecursive = NumberOf1(strN+1);
+        return numFirstDigit+numOtherDigits+numRecursive;
+    }
+    int PowerBase(int n ){
+        int result = 1;
+        for(int i = 0 ;i<n;i++){
+            result*=10;
+        }
+        return result;
+    }
+```
+
+## 总结
+其实并不难，就是对n进行递归统计，先求出首位1的情况，然后再排列组合求出当前位数后面的1的次数，在递归求下一位的次数；
