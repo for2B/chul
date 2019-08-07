@@ -1,0 +1,64 @@
+﻿---
+layout:     post
+title:      "数组中的逆序队"
+subtitle:   "剑指offer"
+date:       2019-02-17
+author:     "chl"
+header-img: "img/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007
+
+## 解法
+解法一：很容易想到的就是遍历到每一个数值后在和后面的数字依次比较，统计个数，时间复杂度为O(n^2);
+
+解法二：利用归并排序的思路，因为归并排序在排序的时候是两个子数组（已排好序的）之间数值大小的比较，然后根据大小放入到辅助数组的，所以当左边的数组当前指向的数值大于右边当前的数值时，左边数值就大于右边数组剩余的所有数值，也即逆序的个数；其余的操作就和归并排序一样；
+
+## 代码
+```
+int InversePairsCore(vector<int>* data, vector<int>* copy, int start, int end) {
+	if (start == end) {
+		(*copy)[start] = (*data)[start];
+		return 0;
+	}
+
+	int mid = start + (end - start) / 2;
+
+	int left = InversePairsCore(copy, data, start, mid);
+	int right = InversePairsCore(copy, data, mid + 1, end);
+
+	int i = mid;
+	int j = end;
+	int count = 0;
+	int indexCopy = end;
+	while (i >= start && j >= mid + 1) {
+		if ((*data)[i] > (*data)[j]) {
+			(*copy)[indexCopy--] = (*data)[i--];
+			count += j - mid;
+		}
+		else {
+			(*copy)[indexCopy--] = (*data)[j--];
+		}
+	}
+
+	while (i >= start) (*copy)[indexCopy--] = (*data)[i--];
+	while (j >= mid + 1) (*copy)[indexCopy--] = (*data)[j--];
+	return left + right + count;
+}
+
+int InversePairs(vector<int> data) {
+    int length = data.size();
+    if(length == 0) return 0;
+	vector<int> copy(data);
+	int count = InversePairsCore(&data, &copy, 0, length - 1);
+	return count % 1000000007;
+}
+```
+
+## 总结
+注意：调用归并排序算法函数时，参数copy和data的含义可以理解为data是我们的原始数据，copy则是我们期望得到的排序后的数据，
