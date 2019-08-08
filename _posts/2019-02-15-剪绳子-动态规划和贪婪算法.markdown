@@ -4,7 +4,7 @@ title:      "剪绳子-动态规划和贪婪算法"
 subtitle:   "剑指offer"
 date:       2019-02-15
 author:     "chl"
-header-img: "img/img/jzoffer.jpg"
+header-img: "/img/jzoffer.jpg"
 tags:
     - 剑指offer
     - 算法
