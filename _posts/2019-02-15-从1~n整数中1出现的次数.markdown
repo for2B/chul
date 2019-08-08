@@ -4,7 +4,7 @@ title:      "最小的k个数"
 subtitle:   "剑指offer"
 date:       2019-02-13
 author:     "chl"
-header-img: "img/img/jzoffer.jpg"
+header-img: "/img/jzoffer.jpg"
 tags:
     - 剑指offer
     - 算法

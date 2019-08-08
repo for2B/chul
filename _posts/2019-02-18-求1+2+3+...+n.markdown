@@ -1,10 +1,10 @@
----
+﻿---
 layout:     post
 title:      "求1+2+3+...+n"
 subtitle:   "剑指offer"
 date:       2019-02-18
 author:     "chl"
-header-img: "img/img/jzoffer.jpg"
+header-img: "/img/jzoffer.jpg"
 tags:
     - 剑指offer
     - 算法

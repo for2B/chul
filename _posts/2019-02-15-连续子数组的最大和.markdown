@@ -4,7 +4,7 @@ title:      "连续子数组的最大和"
 subtitle:   "剑指offer"
 date:       2019-02-15
 author:     "chl"
-header-img: "img/img/jzoffer.jpg"
+header-img: "/img/jzoffer.jpg"
 tags:
     - 剑指offer
     - 算法

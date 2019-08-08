@@ -1,10 +1,10 @@
----
+﻿---
 layout:     post
 title:      "不用加减乘除做加法"
 subtitle:   "剑指offer"
 date:       2019-02-18
 author:     "chl"
-header-img: "img/img/jzoffer.jpg"
+header-img: "/img/jzoffer.jpg"
 tags:
     - 剑指offer
     - 算法

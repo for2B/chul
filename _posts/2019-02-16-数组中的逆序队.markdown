@@ -4,7 +4,7 @@ title:      "数组中的逆序队"
 subtitle:   "剑指offer"
 date:       2019-02-17
 author:     "chl"
-header-img: "img/img/jzoffer.jpg"
+header-img: "/img/jzoffer.jpg"
 tags:
     - 剑指offer
     - 算法
