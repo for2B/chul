@@ -5,7 +5,7 @@ header-img: img/[2266]home-63835037.jpg
 email: ish2bchuil@gmail.com
 description: "为了寻找2B"
 keyword: ""
-url: "https://for2b.github.io/"              # your host, for absolute URL
+url: "https://for2b.github.io"              # your host, for absolute URL
 baseurl: "/chuil"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
