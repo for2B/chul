@@ -6,8 +6,6 @@ date:       2019-03-04
 author:     "chl"
 header-img: "img/jzoffer.jpg"
 tags:
-    - 算法
-    - 数据结构
     - 剑指offer
 ---
 

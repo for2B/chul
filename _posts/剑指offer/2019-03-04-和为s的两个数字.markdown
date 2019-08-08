@@ -7,8 +7,6 @@ author:     "chl"
 header-img: "img/jzoffer.jpg"
 tags:
     - 剑指offer
-    - 算法
-    - 数据结构
 --- 
 
 ## 题目描述
