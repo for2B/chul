@@ -1,4 +1,4 @@
-﻿---
+---
 layout:     post
 title:      "剪绳子-动态规划和贪婪算法"
 subtitle:   "剑指offer"
