@@ -1,0 +1,39 @@
+﻿---
+layout:     post
+title:      "从上往下打印二叉树"
+subtitle:   "剑指offer"
+date:       2019-01-19
+author:     "chl"
+header-img: "/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+
+## 解法 
+其实就是bfs，广度优先搜索，层次遍历。bfs的思路就是借助一个队列，从根开始入队，然后再依次出队，查看当前节点的邻接节点是否已经被访问（这是对于图来说的，在树中只要直接判断左右节点是否为空然后按左到右的顺序加入到队列即可），没被访问的就入队，然后重复直到队列为空；
+
+## 代码
+```
+class Solution {
+public:
+    vector<int> PrintFromTopToBottom(TreeNode* root) {
+        queue<TreeNode*> tempQ;
+        vector<int> outPut;
+        if(root == nullptr) return outPut;
+        tempQ.push(root);
+        while(!tempQ.empty()){
+            TreeNode *node = tempQ.front();
+            tempQ.pop();
+            outPut.push_back(node->val);
+            if(node->left!=nullptr) tempQ.push(node->left);
+            if(node->right!=nullptr) tempQ.push(node->right);
+        }
+        return outPut;
+    }
+};
+``` 

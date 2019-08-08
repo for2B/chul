@@ -1,0 +1,56 @@
+﻿---
+layout:     post
+title:      "链表中倒数第k个节点"
+subtitle:   "剑指offer"
+date:       2019-01-11
+author:     "chl"
+header-img: "/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+输入一个链表，输出该链表中倒数第k个结点。
+
+
+## 解法
+遍历一遍的方法，需要两个指针，一个指针先走k-1步之后，另外一个指针再走；
+因为倒数第k个和最后一个数字的位置直接相差k-1步；
+但是注意考虑k的大小，如果k<=0或者k大于总数，那么应该处理错误；
+##　代码
+```
+ ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        if(k<=0){
+            return NULL;
+        }
+         
+        if(pListHead == nullptr){
+            return NULL;
+        }
+        ListNode *Ahead = pListHead;
+        ListNode *Behind = pListHead;
+        int num = 0;
+        while(Ahead != NULL){
+             if(num == k-1){
+                break;
+            }
+            num++;
+            Ahead = Ahead->next;
+        }
+         
+        if(Ahead == NULL){ //k大于n，所以会为null;
+            return NULL;
+        }
+         
+        while(Ahead->next!=NULL){
+            Ahead = Ahead->next;
+            Behind = Behind->next;
+        }
+        return Behind;
+    }
+```
+
+## 总结
+很多时候有关于链表中的位置问题，可以使用两个不同步指针来进行解决。

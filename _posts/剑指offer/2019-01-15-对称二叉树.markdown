@@ -1,0 +1,63 @@
+﻿---
+layout:     post
+title:      "对称二叉树"
+subtitle:   "剑指offer"
+date:       2019-01-15
+author:     "chl"
+header-img: "/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。
+例子：
+```
+    	    8
+    	   /  \
+    	  6    6
+    	 / \  / \
+    	5   7 7  5
+
+    	    8
+    	   /  \
+    	  6    9
+    	 / \  / \
+    	5   7 7   5
+```
+
+## 解法
+如上面的两颗树，第一颗二叉树的中序遍历为：5 6 7 8 7 6 5；第二颗为：5 6 7 8 7 9 5；
+我们将中序遍历中的左右位置调换一下，使其变成右中左，此时两颗树的逆中序遍历为
+第一颗：5 6 7 8 7 6 5 ；第二颗为：5 9 7 8 7 6 5；
+所以，对该树的前中序的遍历与其对应的逆序进行比较，如果相同，那么该树是对称的；
+
+##　代码
+```
+class Solution {
+public:
+    bool isSymmetrical(TreeNode* pRoot)
+    {
+        return  Symmetrical(pRoot,pRoot);
+    }
+    bool Symmetrical(TreeNode *pRoot1,TreeNode *pRoot2){
+        
+        if(pRoot1 == nullptr && pRoot2 == nullptr ) return true;
+        if(pRoot1 == nullptr || pRoot2 == nullptr ) return false;
+        
+        bool resultMargin = false;
+        bool resultInside = false;
+        bool resulMiddle = false;
+        resultMargin = Symmetrical(pRoot1->left,pRoot2->right);
+        if(pRoot1->val == pRoot2->val) {
+            resulMiddle = true;
+        }
+        resultInside = Symmetrical(pRoot1->right,pRoot2->left);
+        
+        return resultMargin && resulMiddle && resultInside;
+    
+    }
+};
+```

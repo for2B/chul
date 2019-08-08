@@ -1,0 +1,71 @@
+﻿---
+layout:     post
+title:      "链表中环的入口节点"
+subtitle:   "剑指offer"
+date:       2018-12-30
+author:     "chl"
+header-img: "/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
+
+
+## 解法
+首先判断是否有环，如果链表从中途开始产生了环，那么可以设置两个指针，一个走得快（两步），一个慢（一步），如果最终他们能相遇，则说明有环，而且相遇点在环中；
+寻找入口节点，也是设置两个指针，一开始指向头节点，第一个指针先走n步（n为环中节点个数），然后第二个指针再开始走，当他们相遇时指向的节点就是环入口节点；（从前面判断是否有环时可以得到环中的节点，可以根据该节点得出环的个数，假设链表一共有k个节点，则环的入口在第k-n+1个节点处，即从头节点走k-n步，让第一个指针先走n步，则此时该节点距离环入口节点也是k-n步，所以相遇时指针指向的就是环入口）
+
+##　代码
+```
+   ListNode* EntryNodeOfLoop(ListNode* pHead)
+    {
+        ListNode *meetNode = FindRing(pHead);
+        if(!meetNode) return nullptr;
+         
+        int RingNum = 1;
+        ListNode *pNode = meetNode;
+        while(pNode->next!=meetNode){
+            pNode = pNode->next;
+            RingNum++;
+        }
+         
+        ListNode *stepFirst = pHead;
+        ListNode *stepSec = pHead;
+        for(int i = 1 ; i<=RingNum ; i++){
+            stepFirst = stepFirst->next;
+        }
+        while(stepFirst != stepSec){
+            stepFirst = stepFirst->next;
+            stepSec = stepSec->next;
+        }
+        return stepSec;
+    }
+     
+     
+    ListNode *FindRing(ListNode *pHead){
+        if(pHead==nullptr){
+            return NULL;
+        }
+        ListNode *stepOne = pHead->next;
+        if(stepOne == nullptr) return nullptr;
+         
+        ListNode *stepTwo = stepOne->next;
+        if(stepTwo == nullptr) return nullptr;
+         
+        while(stepOne!=nullptr && stepTwo!=nullptr){
+            if(stepOne == stepTwo){
+                return stepOne;
+            }
+            stepOne = stepOne->next;
+             
+            stepTwo = stepTwo->next;
+            if(stepTwo == nullptr) return nullptr;
+            stepTwo = stepTwo->next;           
+        }
+        return nullptr;
+    }
+```

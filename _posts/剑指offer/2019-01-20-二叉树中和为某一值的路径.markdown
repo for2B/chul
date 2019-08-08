@@ -1,0 +1,60 @@
+﻿---
+layout:     post
+title:      "二叉树中和为某一值的路径"
+subtitle:   "剑指offer"
+date:       2019-01-20
+author:     "chl"
+header-img: "/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+
+## 解法 
+使用一个辅助栈（向量），来从根开始前序遍历树，将路上的值加起来并进行判断，符合期望值的路径输出；当搜索完一条路径之后（不管是否成功）回溯回父节点时，将原来加入进去的节点弹出，在遍历剩下的子树；
+
+## 代码
+```
+class Solution {
+public:
+    vector<vector<int> > Path;
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+        if(root== nullptr) return Path;
+        vector<int> tempP;
+        int tempNum = 0;
+        findPath(root,tempP,tempNum,expectNumber);
+        return Path;
+    }
+    
+    void findPath(TreeNode *root , vector<int> & tempP,int tempNum,int expectNumber){
+        if(root==nullptr) return;
+        tempNum = tempNum+root->val;
+        
+        //当符合条件时，将值加入路径中并输出到Path；
+        if((tempNum==expectNumber) && root->left == nullptr && root->right == nullptr){
+            tempP.push_back(root->val);
+            Path.push_back(tempP);
+            tempP.pop_back(); //回到上一层时需要注意弹出刚才加进去的值；
+            return;
+        }else if((tempNum==expectNumber) && (root->left != nullptr || root->right != nullptr)){//当前节点已经满足，但是该节点不是叶子节点；
+            return;
+        }
+         
+        
+        //当前已经大于期望值，后续的也就没必要在走下去了；
+        if(tempNum>expectNumber) {
+            return; 
+        }
+        
+        //当前值小于期望值，将该节点加入到路径中，并遍历左右子树；
+        tempP.push_back(root->val);
+        if(root->left!=nullptr) findPath(root->left,tempP,tempNum,expectNumber);
+        if(root->right!=nullptr) findPath(root->right,tempP,tempNum,expectNumber);
+        tempP.pop_back();//回溯到上一层时弹出当前节点；
+    }
+};
+``` 

@@ -1,0 +1,48 @@
+﻿---
+layout:     post
+title:      "二叉搜索树后序遍历序列"
+subtitle:   "剑指offer"
+date:       2019-01-20
+author:     "chl"
+header-img: "/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同
+
+
+## 解法 
+由于后序遍历的最后一个节点为根节点，且由二叉搜索树的特性可以知道，该树可以根据根节点分为左右两个子树（即将数组分为两个部分，可以是空子树），然后在递归判断子树是否也满足这个条件；不满足时则不是二叉搜索树；
+
+## 代码
+```
+class Solution {
+public:
+    bool VerifySquenceOfBST(vector<int> sequence) {
+        if(sequence.size()==0) return false;
+        int start = 0;
+        int end = sequence.size()-1;
+        return isSquenceOfBST(sequence,start,end);
+    }
+     
+    bool isSquenceOfBST(vector<int> sequence , int start,int end){
+        if(start >= end) return true;
+         
+        int root = sequence[end];
+        int lowRoot=0,highRoot=0,i=start;
+         
+        while(sequence[i]<root) i++;
+        lowRoot = i-1;
+         
+        while(sequence[i]>root) i++;
+        if(i!=end) return false;
+        highRoot = i-1;
+         
+        return isSquenceOfBST(sequence,start,lowRoot)&&isSquenceOfBST(sequence,lowRoot+1,highRoot);
+    }
+};
+``` 

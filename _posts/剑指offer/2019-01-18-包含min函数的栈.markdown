@@ -1,0 +1,111 @@
+﻿---
+layout:     post
+title:      "包含min函数的栈"
+subtitle:   "剑指offer"
+date:       2019-01-18
+author:     "chl"
+header-img: "/img/jzoffer.jpg"
+tags:
+    - 剑指offer
+    - 算法
+    - 数据结构
+--- 
+
+## 题目描述
+定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+
+## 解法一
+所以很容易想到的声明一个最小值指针或者索引，然后每次push的时候来比较当前的最小值；删除的时候注意最小值是不是要删除的值，是的话就要重新遍历一遍来寻找最小值，不过在pop()函数里面遇到这种情况的时候就需要时间复杂度为O(n)；不过这样还是能确保在min函数里面时间复杂度为O(1);
+
+##  解法一代码：
+
+```
+ class Solution {
+public:
+    vector<int> stack;
+    int index_top = -1;
+    int index_min = -1;
+     
+    void push(int value) {
+         
+        index_top++;
+        stack.push_back(value);
+        if (stack.size() == 1) {
+            index_min = 0;
+            return;
+        }
+ 
+        if (stack[index_min] > value) {
+            index_min = index_top;
+        }
+    }
+    void pop() {
+        if (stack.size() == 0) {
+            return;
+        }
+ 
+        if (index_min == index_top) {
+ 
+            int min = stack[0];
+            index_min = 0;
+ 
+            for (int i = 1; i < stack.size()-1; i++) {
+                if (stack[i] < min) index_min = i;
+            }
+ 
+        }
+ 
+        stack.pop_back();
+        index_top--;
+ 
+        if (stack.size() == 0) {
+            index_min = -1;
+        }   
+         
+    }
+    int top() {
+        return stack[index_top];
+    }
+    int min() {
+        return stack[index_min];
+    }
+     
+};
+``` 
+
+## 解法二
+通过空间来换时间，即声明两个栈，一个栈是包含所有数据的栈，另外一个是将每次新进入的最小值压入栈中；  
+如依次压入：4 7 3 6 8 2 9；  
+则栈A为： 4 7 3 6 8 2 9；  
+栈B为：4 3 2；  
+这样每次要获得最小值直接弹出栈B顶，在pop栈A的数据时，如果AB栈顶相同，则同时popAB的栈顶；
+##　解法二代码
+```
+class Solution {
+public:
+    stack<int> stack1,stack2;
+    void push(int value) {
+        stack1.push(value);
+        if(stack2.empty()){
+            stack2.push(value);
+        }else if(stack2.top()>value){
+            stack2.push(value);
+        }
+    }
+    void pop() {
+        if(stack1.empty()){
+            return;
+        }
+        if(stack2.top()==stack1.top()){
+            stack2.pop();
+        }        
+        stack1.pop();
+    }
+    int top() {
+        return stack1.top();
+    }
+    int min() {
+        return stack2.top();
+    }
+};
+```
