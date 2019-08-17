@@ -4,12 +4,10 @@ title:      "elasticsearch 的数据存储和索引"
 subtitle:   "es学习记录"
 date:       2019-07-13
 author:     "CHuiL"
-header-img: "img/k8s-bg.png"
+header-img: "img/elk-bg.png"
 tags:
     - elk
 ---
-
-> “Yeah It's on. ”
 
 
 ### 倒排索引
