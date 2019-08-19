@@ -1,13 +1,4 @@
----
-layout:     post
-title:      "elasticsearch 的数据存储和索引"
-subtitle:   "es学习记录"
-date:       2019-07-13
-author:     "CHuiL"
-header-img: "img/elk-bg.png"
-tags:
-    - elk
----
+
 
 
 ### 倒排索引
