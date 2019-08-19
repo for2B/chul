@@ -1,4 +1,4 @@
-﻿---
+---
 layout:     post
 title:      "elasticsearch 的数据存储和索引"
 subtitle:   "es学习记录"
@@ -21,6 +21,7 @@ elasticsearch底层是使用Lucene的倒排索引技术来实现比关系型数�
 ###### term：字段的内容，就是某个field的值，大部分情况下都有多个值。
 ###### posting list: docId的集合。
 ##### 例子
+
 docid | 年龄 |  性别 |
 ---|---|---|
 1 | 18| 女|
@@ -29,11 +30,13 @@ docid | 年龄 |  性别 |
 
 假设我有一个索引为person,而上述表格中每一行就是代表一个文档，field就是年龄，性别。而年龄的term就是18 20，性别就是男女。则上述关系存在如下的倒排索引
 ###### 年龄
+
 term | posting list 
 ---|---
 18 | [1,3]
 20 | [2]
 ###### 性别
+
 term | posting list 
 ---|---
 女 | [1,2]
