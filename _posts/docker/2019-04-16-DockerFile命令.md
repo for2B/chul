@@ -1,6 +1,6 @@
-﻿---
+---
 layout:     post
-title:      "2019-04-16-DockerFile命令"
+title:      "DockerFile命令"
 subtitle:   "docker学习记录"
 date:       2019-04-16
 author:     "CHuiL"
