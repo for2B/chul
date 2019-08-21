@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "elasticsearch 的数据存储"
-subtitle:   "elk实践记录"
+subtitle:   "elk学习记录"
 date:       2019-08-18
 author:     "CHuiL"
 header-img: "img/elk-bg.png"
