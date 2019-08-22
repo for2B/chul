@@ -1,7 +1,7 @@
 # Site settings
 title: CHuiL
 SEOTitle: CHuiL
-header-img: img/[2266]home-63835037.jpg
+header-img: img/home-bg.jpg
 email: ish2bchuil@gmail.com
 description: "为了寻找2B"
 keyword: ""
@@ -74,8 +74,8 @@ sidebar-avatar: /chuil/img/image-head.jpg       # use absolute URL, seeing it's 
 
 
 # Featured Tags
-#featured-tags: true                     # whether or not using Feature-Tags
-#featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 
 
