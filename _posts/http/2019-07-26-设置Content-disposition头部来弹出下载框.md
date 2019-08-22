@@ -1,6 +1,6 @@
 ﻿---
 layout:     post
-title:      "2019-07-26-设置Content-disposition头部来弹出下载框"
+title:      "设置Content-disposition头部来弹出下载框"
 subtitle:   ""
 date:       2019-07-26
 author:     "CHuiL"
