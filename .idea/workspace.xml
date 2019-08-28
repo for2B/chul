@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ec95cfa-da20-49e7-b8be-5a8bb31e5bab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/_posts/docker/2019-04-16-DockerFile命令.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/docker/2019-04-16-DockerFile命令.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/docker/2019-04-17-Docker容器原理的基础知识.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/docker/2019-04-17-Docker容器原理的基础知识.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/docker/2019-04-23-理解docker镜像原理.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/docker/2019-04-23-理解docker镜像原理.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/docker/2019-04-25-docker多阶段构建.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/docker/2019-04-25-docker多阶段构建.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/docker/2019-08-15-docker 4种网络模型 .md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/docker/2019-08-15-docker 4种网络模型 .md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/redis/2019-03-19-redis中的数据结构—SDS简单动态字符串.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/redis/2019-03-19-redis中的数据结构—SDS简单动态字符串.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/redis/2019-03-19-redis中的数据结构—压缩列表.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/redis/2019-03-19-redis中的数据结构—压缩列表.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/redis/2019-03-25-redis中的数据结构—跳跃表.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/redis/2019-03-25-redis中的数据结构—跳跃表.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/算法/2019-04-05-从2-3树到红黑树.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/算法/2019-04-05-从2-3树到红黑树.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/算法/2019-08-18-01背包问题.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/算法/2019-08-18-01背包问题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/bilgewater_architecture_02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/k8s-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/k8s-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/shurima_sun_04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/targon_ring_03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,12 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_posts/minio/2019-07-26-Minio GetObject实时传输实践记录.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor />
-              <second_editor />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="80" column="10" lean-forward="true" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -117,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/剑指offer/2019-02-19-二维数组中的查找.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -129,6 +115,11 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>tag</find>
+    </findStrings>
+  </component>
   <component name="GOROOT" path="D:\golang" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -137,7 +128,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/_posts/算法/2019-03-25-跳跃表.md" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/CNAME" />
         <option value="$PROJECT_DIR$/_posts/算法/2019-07-29-旅行商问题.md" />
         <option value="$PROJECT_DIR$/_posts/redis/2019-03-25-redis中的数据结构—跳跃表.md" />
@@ -151,6 +141,7 @@
         <option value="$PROJECT_DIR$/_posts/docker/2019-04-25-docker多阶段构建.md" />
         <option value="$PROJECT_DIR$/_posts/docker/2019-08-15-docker 4种网络模型 .md" />
         <option value="$PROJECT_DIR$/_posts/算法/2019-08-18-01背包问题.md" />
+        <option value="$PROJECT_DIR$/_config.yml" />
       </list>
     </option>
   </component>
@@ -228,12 +219,6 @@
               <item name="chuil" type="b2602c69:ProjectViewProjectNode" />
               <item name="chuil" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="剑指offer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chuil" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chuil" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
               <item name="算法" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -306,13 +291,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_posts/算法/a" />
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNAME">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -619,6 +597,13 @@
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="80" column="10" lean-forward="true" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
         </state>
       </provider>
     </entry>
