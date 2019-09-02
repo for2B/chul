@@ -118,9 +118,11 @@ IBM Cloud Object Storage插件是一个Kubernetes卷插件，使Kubernetes pod�
 ibmc-s3fs文件下载 https://github.com/for2B/ibmcloud-object-storage-plugin/releases/download/untagged-cc0c76dffba4033abfc0/ibmc-s3fs 
  
 ibmcloud镜像可以使用下面的镜像
-`ish2b/ibmcloud-object-storage-plugin:latest`
+`ish2b/ibmcloud-object-storage-plugin:latest`    
 
-1. 复制ibmc-s3fs文件到k8s插件目录,（下面的命令中ibmc-s3fs文件已经存放在/tmp目录下）
+
+1.复制ibmc-s3fs文件到k8s插件目录,（下面的命令中ibmc-s3fs文件已经存放在/tmp目录下）    
+
 ```
 $ sudo mkdir -p /usr/libexec/kubernetes/kubelet-plugins/volume/exec/ibm~ibmc-s3fs
 $ sudo cp /tmp/ibmc-s3fs /usr/libexec/kubernetes/kubelet-plugins/volume/exec/ibm~ibmc-s3fs
@@ -266,10 +268,14 @@ $ kubectl delete sc ibmc-s3fs-standard
 ```
 只需将刚才创建的sc,sa deploy,pod等删除即可。
 
+#### 整体架构图
  
 ![image](/chuil/img/minio/2019-09-02-1.png)
  
-## 参考
-https://github.com/IBM/ibmcloud-object-storage-plugin   
-https://cloud.ibm.com/docs/containers?topic=containers-object_storage
-https://github.com/s3fs-fuse/s3fs-fuse
+## 参考  
+
+[ibmcloud-object-storage-plugin](https://github.com/IBM/ibmcloud-object-storage-plugin)     
+
+[在 IBM Cloud Object Storage 上存储数据](https://cloud.ibm.com/docs/containers?topic=containers-object_storage)  
+
+[s3fs-fuse](https://github.com/s3fs-fuse/s3fs-fuse)
