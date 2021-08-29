@@ -6,7 +6,7 @@ date:       2021-07-21
 author:     "CHuiL"
 header-img: "img/java-bg.png"
 tags:
-    - java
+    - spring
 ---
 
 ### spring 通过缓存解决循环依赖
