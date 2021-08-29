@@ -105,7 +105,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 }
 ```
 流程
-![image](/chuil/img/spring/static-auto-1.png)
+![image](/chuil/img/spring/proxy-injected-fail-1.png)
 
 而前面提到的类增强，也就是我们在创建一个Bean的时候，如果有注入@Async的注解，那么我们得到的应该是一个代理Bean实例。  
 
