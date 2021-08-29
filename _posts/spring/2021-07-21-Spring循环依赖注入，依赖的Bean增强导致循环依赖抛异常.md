@@ -4,7 +4,7 @@ title:      "Spring循环依赖注入，依赖的Bean增强导致循环依赖抛
 subtitle:   "spring依赖注入"
 date:       2021-07-21
 author:     "CHuiL"
-header-img: "img/java-bg.png"
+header-img: "/img/bg/spring.jpg"
 tags:
     - spring
 ---
