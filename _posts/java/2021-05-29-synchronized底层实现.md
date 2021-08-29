@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "synchronized底层实现"
-subtitle:   "exception"
+subtitle:   "并发"
 date:       2021-05-29
 author:     "CHuiL"
 header-img: "img/java-bg.png"
