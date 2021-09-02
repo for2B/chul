@@ -430,7 +430,7 @@ Map<UserRoleEnum,List<ChannelUserDto>> enumListEnumMap =
 
 ### Chapter 9.Item 61: Prefer primitive types to boxed primitives（基本数据类型优于包装类）
 自动拆装箱的bug；  
-![image](B6BF96FD32144CF899A14C94D5F1ECC5)  
+![image](/chuil/img/java/effective-java-1.png)
 这个地方可能会报npe；
 
 ### Chapter 12. Item 86: Implement Serializable with great caution（非常谨慎地实现 Serializable）
